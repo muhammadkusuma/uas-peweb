@@ -1,3 +1,37 @@
+<?php
+require_once 'backend/function.php';
+
+if (isset($_POST['submit'])) {
+    // try {
+    //     $conn = getConnection();
+    //     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    //     $asal = $_POST["asal_sekolah"];
+    //     $agama = $_POST["agama"];
+    //     $pkn = $_POST["pkn"];
+    //     $bahasa = $_POST["bahasa"];
+    //     $mtk = $_POST["mtk"];
+    //     $ipa = $_POST["ipa"];
+    //     $ips = $_POST["ips"];
+    //     $inggris = $_POST["inggris"];
+    //     $seni = $_POST["seni"];
+    //     $pjok = $_POST["pjok"];
+    //     $armel = $_POST["armel"];
+
+    //     $sql = "INSERT INTO riwayat_pendidikan (asal_sekolah, agama, pkn, bahasa, mtk, ipa, ips, inggris, seni, pjok, armel,)
+    //     VALUES ('$asal','$agama','$pkn','$bahasa','$mtk','$ipa','$ips','$inggris','$seni','$pjok','$armel')";
+    //     $conn->exec($sql);
+    //     echo "New record created successfully";
+    // } catch (PDOException $e) {
+    //     echo $sql . "<br>" . $e->getMessage();
+    // }
+    // var_dump($_POST);
+    if (pendidikan($_POST) > 0) {
+        echo "berhasil";
+    } else {
+        echo "gagal";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 

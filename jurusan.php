@@ -1,28 +1,28 @@
 <?php
 require_once 'backend/function.php';
 
-if (isset($_POST["jurusan"])) {
-    try {
-        $conn = getConnection();
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "INSERT INTO jurusan_dituju (jurusan_1, jurusan_2)
-        VALUES ('" . $_POST['jurusan_1'] . "', '" . $_POST['jurusan_2'] . "')";
-        $conn->exec($sql);
-        echo "New record created successfully";
-    } catch (PDOException $e) {
-        echo $sql . "<br>" . $e->getMessage();
-    }
-    // if (jurusan($_POST) > 0) {
-    //     echo "<script>
-    //                         alert('User baru berhasil ditambahkan!');
-    //                document.location.href='formulir.php';
-    //                     </script>";
-    // } else {
-    //     echo "<script>
-    //                         alert('User baru GAGAL ditambahkan!');
-    //                document.location.href='signup.php';
-    //                     </script>";
+if (isset($_POST['jurusan'])) {
+    // try {
+    //     $conn = getConnection();
+    //     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    //     $sql = "INSERT INTO jurusan_dituju (jurusan_1, jurusan_2)
+    //     VALUES ('" . $_POST['pilihan1'] . "', '" . $_POST['pilihan2'] . "')";
+    //     $conn->exec($sql);
+    //     echo "New record created successfully";
+    // } catch (PDOException $e) {
+    //     echo $sql . "<br>" . $e->getMessage();
     // }
+    if (jurusan($_POST) > 0) {
+        echo "<script>
+                            alert('User baru berhasil ditambahkan!');
+                   document.location.href='formulir.php';
+                        </script>";
+    } else {
+        echo "<script>
+                            alert('User baru GAGAL ditambahkan!');
+                   document.location.href='signup.php';
+                        </script>";
+    }
 }
 ?>
 
