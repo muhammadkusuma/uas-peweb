@@ -30,7 +30,7 @@ if (isset($_POST['formulir'])) {
         <title>PPDB</title>
         <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="assets/css/Footer-Dark-Multi-Column-icons.css">
-        <link rel="stylesheet" href="assets/css/styles.css">
+        <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -41,12 +41,23 @@ if (isset($_POST['formulir'])) {
                                         <div class="card mb-5">
                                                 <div class="card-body d-flex flex-column align-items-center">
                                                         <h2 class="mb-5">Formulir Pendaftaran</h2>
-                                                        <form class="text-center" method="post" enctype="multipart/form-data">
-                                                                <div class="mb-3"><input class="form-control mb-3" type="text" name="nama" placeholder="Nama Lengkap" required></div>
-                                                                <div class="mb-3"><input class="form-control" type="number" name="nisn" placeholder="NISN" required></div>
-                                                                <div class="mb-3"><input class="form-control" type="text" name="tempat_lahir" placeholder="Tempat Lahir" required></div>
-                                                                <div class="text-start mb-3"><label class="form-label text-start">Tanggal
-                                                                                Lahir</label><input class="form-control" type="date" name="tanggal_lahir" placeholder="Tanggal Lahir" required></div>
+                                                        <form class="" method="post" enctype="multipart/form-data">
+                                                                <div class="mb-3">
+                                                                        <label for="nama" class="form-label">Nama Lengkap</label>
+                                                                        <input class="form-control mb-3" type="text" name="nama" required>
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                        <label for="nisn" class="form-label">NISN</label>
+                                                                        <input class="form-control" type="number" name="nisn" required>
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                        <label for="tempat_lahir" class="form-label">Tempat Lahir</label>
+                                                                        <input class="form-control" type="text" name="tempat_lahir" required>
+                                                                </div>
+                                                                <div class="text-start mb-3">
+                                                                        <label class="form-label text-start">TanggalLahir</label>
+                                                                        <input class="form-control" type="date" name="tanggal_lahir" required>
+                                                                </div>
                                                                 <div class="text-start mb-3">
                                                                         <select class="form-select" aria-label="Default select example" name="jenis_kelamin">
                                                                                 <option selected>Jenis Kelamin</option>
@@ -56,6 +67,7 @@ if (isset($_POST['formulir'])) {
                                                                         </select>
                                                                 </div>
                                                                 <div class="mb-3">
+                                                                        <label for="form_prov" class="form-label">Provinsi</label>
                                                                         <select id="form_prov" class="w-100 form-select" aria-label="Default select example" name="provinsi">
                                                                                 <option value="">Pilih Provinsi</option>
                                                                                 <?php
@@ -70,17 +82,25 @@ if (isset($_POST['formulir'])) {
 
                                                                 </div>
                                                                 <div class="mb-3">
+                                                                        <label for="form_kab" class="form-label">Kabupaten</label>
                                                                         <select id="form_kab" class="w-100 form-select" aria-label="Default select example" name="kabupaten"></select>
 
                                                                 </div>
                                                                 <div class="mb-3">
+                                                                        <label for="form_kec" class="form-label">Kecamatan</label>
                                                                         <select id="form_kec" class="w-100 form-select" aria-label="Default select example" name="kecamatan"></select>
                                                                 </div>
-                                                                <div class="mb-3"><input class="form-control" type="number" name="kodepos" placeholder="Kode pos" required></div>
-                                                                <div class="mb-3"><input class="form-control" type="text" name="alamat" placeholder="Alamat" required></div>
                                                                 <div class="mb-3">
+                                                                        <label for="kodepos" class="form-label">Kode Pos</label>
+                                                                        <input class="form-control" type="number" name="kodepos" required>
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                        <label for="alamat" class="form-label">Alamat</label>
+                                                                        <input class="form-control" type="text" name="alamat" required>
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                        <label for="agama" class="form-label">Agama</label>
                                                                         <select name="agama" class="w-100 form-select" aria-label="Default select example">
-                                                                                <option value="agama">Agama</option>
                                                                                 <option value="Islam">Islam</option>
                                                                                 <option value="Kristen">Kristen</option>
                                                                                 <option value="Hindu">Hindu</option>
@@ -88,10 +108,17 @@ if (isset($_POST['formulir'])) {
                                                                                 <option value="Lainnya">Lainnya</option>
                                                                         </select>
                                                                 </div>
-                                                                <div class="mb-3"><input class="form-control" type="tel" name="nohp" placeholder="Nomor Handphone" required></div>
-                                                                <div class="mb-3"><input class="form-control" type="number" name="jumlah_saudara" placeholder="Jumlah Saudara" required></div>
+                                                                <div class="mb-3">
+                                                                        <label for="nohp" class="form-label">Nomor Handphone</label>
+                                                                        <input class="form-control" type="tel" name="nohp" required>
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                        <label for="jumlah_saudara" class="form-label">Jumlah Saudara</label>
+                                                                        <input class="form-control" type="number" name="jumlah_saudara" required>
+                                                                </div>
                                                                 <div class="text-start mb-3">
-                                                                        <input class="form-control" type="file" name="foto">
+                                                                        <label for="foto" class="form-label">Upload Pas Foto</label>
+                                                                        <input class="form-control" type="file" name="foto" required>
                                                                         <label class="form-label">Pas Foto 3x4 Background Merah, Ukuran File Maksimal 2Mb tipe JPEG/PNG</label>
                                                                 </div>
                                                                 <div class="mb-3"><button class="btn btn-primary d-block w-100" type="submit" name="formulir">Selanjutnya</button></div>

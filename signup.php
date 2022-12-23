@@ -24,7 +24,7 @@ if (isset($_POST["buat_akun"])) {
     <title>PPDB</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/Footer-Dark-Multi-Column-icons.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>

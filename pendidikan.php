@@ -32,59 +32,110 @@ if (isset($_POST['submit'])) {
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>PPDB</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/Footer-Dark-Multi-Column-icons.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <form action="" method="post" enctype="multipart/form-data">
-        <label for="asal_sekolah">Asal Sekolah</label>
-        <input type="text" name="asal_sekolah" id="asal_sekolah">
-        <br>
-        <label for="agama">Nilai Pendidikan Agama dan Budi Pekerti</label>
-        <input type="number" name="agama" id="agama">
-        <br>
-        <label for="pkn">Nilai Pendidikan Pancasila dan Kewarganegaraan</label>
-        <input type="number" name="pkn" id="pkn">
-        <br>
-        <label for="bahasa">Nilai Bahasa Indonesia</label>
-        <input type="number" name="bahasa" id="bahasa">
-        <br>
-        <label for="mtk">Nilai Matematika</label>
-        <input type="number" name="mtk" id="mtk">
-        <br>
-        <label for="ipa">Nilai Ilmu Pengetahuan Alam</label>
-        <input type="number" name="ipa" id="ipa">
-        <br>
-        <label for="ips">Nilai Ilmu Pengetahuan Sosial</label>
-        <input type="number" name="ips" id="ips">
-        <br>
-        <label for="inggris">Nilai Bahasa Inggris</label>
-        <input type="number" name="inggris" id="inggris">
-        <br>
-        <label for="seni">Nilai Seni Budaya</label>
-        <input type="number" name="seni" id="seni">
-        <br>
-        <label for="pjok">Nilai Pendidikan Jasmani, Olahraga, dan Kesehatan</label>
-        <input type="number" name="pjok" id="pjok">
-        <br>
-        <label for="armel">Nilai Arab Melayu</label>
-        <input type="number" name="armel" id="armel">
-        <br>
-        <label for="skl">Surat Keterangan Lulus</label>
-        <input type="file" name="skl" id="skl">
-        <br>
-        <button type="submit" name="submit">Lanjut</button>
+    <div class="container-md">
+        <div class="card">
+            <form class="p-3" method="post" enctype="multipart/form-data">
+                <h2 class="mb-5">Riwayat Pendidikan</h2>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="asal_sekolah" placeholder="SMP Negeri " required name="asal_sekolah">
+                            <label for="asal_sekolah">Asal Sekolah</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control" id="floatingInput" placeholder="0" required name="agama">
+                            <label for="floatingInput">Nilai Pendidikan Agama dan Budi Pekerti</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control" id="asal_sekolah" placeholder="SMP Negeri " required name="pkn">
+                            <label for="asal_sekolah">Nilai Pendidikan dan Kewarganegaraan</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control" id="floatingInput" placeholder="0" required name="bahasa">
+                            <label for="floatingInput">Nilai Bahasa Indonesia</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control" id="asal_sekolah" placeholder="SMP Negeri " required name="mtk">
+                            <label for="asal_sekolah">Nilai Matematika</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control" id="floatingInput" placeholder="0" required name="ipa">
+                            <label for="floatingInput">Nilai Ilmu Pengetahuan Alam</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control" id="asal_sekolah" placeholder="SMP Negeri " required name="ips">
+                            <label for="asal_sekolah">Nilai Ilmu Pengetahuan Sosial</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control" id="floatingInput" placeholder="0" required name="inggris">
+                            <label for="floatingInput">Nilai Bahasa Inggris</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control" id="asal_sekolah" placeholder="SMP Negeri " required name="pjok">
+                            <label for="asal_sekolah">Nilai Pendidikan Jasmani, Olahraga dan Kesehatan</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control" id="floatingInput" placeholder="0" required name="armel">
+                            <label for="floatingInput">Nilai Arab Melayu</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            <input type="file" class="form-control" id="asal_sekolah" placeholder="SMP Negeri " required name="skl">
+                            <label for="exampleFormControlInput1" class="form-label">Surat Keterangan Lulus</label>
+                        </div>
+                    </div>
 
+                </div>
+                <button type="submit" name="submit" class="btn btn-primary w-100 mb-2">Selanjutnya</button>
+                <a href="#" class="btn btn-outline-primary w-100">Kembali</a>
 
-
-    </form>
+            </form>
+        </div>
+    </div>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>

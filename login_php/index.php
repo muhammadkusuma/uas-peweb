@@ -11,93 +11,81 @@ if (isset($_SESSION['username'])) { // Jika session username ada berarti dia sud
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Login via Google Account</title>
-    <!-- Load File CSS Bootstrap  -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="libraries/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    <style>
-        body {
-            padding-top: 40px;
-            padding-bottom: 40px;
-            background-color: #eee;
-        }
-
-        .form-signin {
-            max-width: 330px;
-            padding: 15px;
-            margin: 0 auto;
-        }
-
-        .form-signin .form-signin-heading {
-            margin-bottom: 10px;
-        }
-
-        .form-signin .form-control {
-            position: relative;
-            height: auto;
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            box-sizing: border-box;
-            padding: 10px;
-            font-size: 16px;
-        }
-
-        .form-signin .form-control:focus {
-            z-index: 2;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Login - PPDB</title>
+    <link rel="stylesheet" href="../login_php/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../login_php/assets/css/Nunito.css">
+    <link rel="stylesheet" href="../login_php/assets/fonts/fontawesome-all.min.css">
 </head>
 
-<body>
+<body class="bg-gradient-primary">
     <div class="container">
-        <div class="form-signin">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <h2 class="form-signin-heading" style="margin-top: 0;">Silahkan login</h2>
-                    <?php
-                    // Cek apakah terdapat cookie dengan nama message
-                    if (isset($_COOKIE["message"])) { // Jika ada
-                    ?>
-                        <div class="alert alert-danger">
-                            <?php
-                            // Tampilkan pesannya
-                            echo $_COOKIE["message"];
-                            ?>
+        <div class="row justify-content-center">
+            <div class="col-md-9 col-lg-12 col-xl-10">
+                <div class="card shadow-lg o-hidden border-0 my-5">
+                    <div class="card-body p-0">
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-flex">
+                                <div class="flex-grow-1 bg-login-image" style="background-image: url(&quot;../login_php/assets/img/dogs/image3.jpeg&quot;);"></div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h4 class="text-dark mb-4">Welcome Back!</h4>
+                                    </div>
+                                    <?php
+                                    // Cek apakah terdapat cookie dengan nama message
+                                    if (isset($_COOKIE["message"])) { // Jika ada
+                                    ?>
+                                        <div class="alert alert-danger">
+                                            <?php
+                                            // Tampilkan pesannya
+                                            echo $_COOKIE["message"];
+                                            ?>
+                                        </div>
+                                    <?php
+                                    }
+                                    ?>
+                                    <form class="user" method="post" action="../login_php/login.php">
+                                        <div class="mb-3">
+                                            <input class="form-control form-control-user" type="text" id="exampleInputUsername" aria-describedby="emailHelp" placeholder="Enter Username" name="username" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <input class="form-control form-control-user" type="password" id="exampleInputPassword" placeholder="Password" name="password" required>
+                                        </div>
+                                        <!-- <div class="mb-3">
+                                            <div class="custom-control custom-checkbox small">
+                                                <div class="form-check">
+                                                    <input class="form-check-input custom-control-input" type="checkbox"
+                                                        id="formCheck-1">
+                                                    <label class="form-check-label custom-control-label"
+                                                        for="formCheck-1">Remember Me</label>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                        <button class="btn btn-primary d-block btn-user w-100" type="submit">Login</button>
+                                        <hr>
+                                        <a class="btn btn-primary d-block btn-google btn-user w-100 mb-2" href="../login_php/google.php">
+                                            <i class="fab fa-google"></i>&nbsp; Login or Signup with Google</a>
+                                        <!-- <a class="btn btn-primary d-block btn-facebook btn-user w-100" role="button">
+                                            <i class="fab fa-facebook-f"></i>&nbsp; Login with Facebook</a> -->
+                                        <hr>
+                                    </form>
+                                    <div class="text-center"><a class="small" href="forgot-password.html">Forgot
+                                            Password?</a></div>
+                                    <div class="text-center"><a class="small" href="register.html">Create an
+                                            Account!</a></div>
+                                </div>
+                            </div>
                         </div>
-                    <?php
-                    }
-                    ?>
-                    <form method="post" action="login.php">
-                        <div class="form-group">
-                            <label>Username</label>
-                            <input type="text" class="form-control" name="username" placeholder="Username" required autofocus>
-                        </div>
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input type="password" class="form-control" name="password" placeholder="Password" required>
-                        </div>
-                        <button type="submit" class="btn btn-lg btn-success btn-block">LOGIN</button>
-                        <div class="text-center" style="margin-top: 10px;margin-bottom: 10px;">
-                            atau login dengan
-                        </div>
-                        <div class="text-center">
-                            <a href="google.php" class="btn btn-danger"><i class="fa fa-google"></i> GOOGLE</a>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <script src="../login_php/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../login_php/assets/js/bs-init.js"></script>
+    <script src="../login_php/assets/js/theme.js"></script>
 </body>
 
 </html>

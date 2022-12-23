@@ -55,7 +55,7 @@ if (isset($_POST['ayah'])) {
     <title>PPDB</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/Footer-Dark-Multi-Column-icons.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -66,15 +66,26 @@ if (isset($_POST['ayah'])) {
                     <div class="card mb-5">
                         <div class="card-body d-flex flex-column align-items-center">
                             <h2 class="mb-5">Data Ayah</h2>
-                            <form class="text-center" method="post">
-                                <div class="mb-3"><input class="form-control mb-3" type="text" name="nama" placeholder="Nama Lengkap"></div>
-                                <div class="mb-3"><input class="form-control mb-3" type="number" name="nik" placeholder="NIK"></div>
-                                <div class="mb-3"><input class="form-control" type="text" name="tempat_lahir" placeholder="Tempat Lahir"></div>
-                                <div class="text-start mb-3"><label class="form-label text-start">Tanggal
-                                        Lahir</label><input class="form-control" type="date" name="tanggal_lahir" placeholder="Tanggal Lahir"></div>
+                            <form class="" method="post">
                                 <div class="mb-3">
-                                    <label for="agama">Agama</label>
-                                    <select name="agama" class="w-100">
+                                    <label for="nama" class="form-label">Nama Lengkap</label>
+                                    <input class="form-control mb-3" type="text" name="nama" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="nik" class="form-label">NIK</label>
+                                    <input class="form-control mb-3" type="number" name="nik" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="tempat_lahir" class="form-label">Tempat Lahir</label>
+                                    <input class="form-control" type="text" name="tempat_lahir" required>
+                                </div>
+                                <div class="text-start mb-3">
+                                    <label class="form-label text-start">Tanggal Lahir</label>
+                                    <input class="form-control" type="date" name="tanggal_lahir" placeholder="Tanggal Lahir" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="agama" class="form-label">Agama</label>
+                                    <select name="agama" class="w-100 form-select">
                                         <option value="Islam">Islam</option>
                                         <option value="Kristen">Kristen</option>
                                         <option value="Hindu">Hindu</option>
@@ -83,8 +94,8 @@ if (isset($_POST['ayah'])) {
                                     </select>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="Pendidikan">Pendidikan Terakhir</label>
-                                    <select name="pendidikan" class="w-100">
+                                    <label for="Pendidikan" class="form-label">Pendidikan Terakhir</label>
+                                    <select name="pendidikan" class="w-100 form-select">
                                         <option value="SD/Sederajat">SD/Sederajat</option>
                                         <option value="SMP/Sederajat">SMP/Sederajat</option>
                                         <option value="SMA/Sederajat">SMA/Sederajat</option>
@@ -94,13 +105,25 @@ if (isset($_POST['ayah'])) {
                                         <option value="Tidak bersekolah">Tidak Bersekolah</option>
                                     </select>
                                 </div>
-                                <div class="mb-3"><input class="form-control" type="text" name="pekerjaan" placeholder="Pekerjaan"></div>
-                                <div class="mb-3"><input class="form-control" type="number" name="penghasilan" placeholder="Penghasilan"></div>
-                                <div class="mb-3"><input class="form-control" type="tel" name="no_hp" placeholder="Nomor Handphone"></div>
-                                <div class="mb-3"><input class="form-control" type="text" name="alamat" placeholder="Alamat"></div>
                                 <div class="mb-3">
-                                    <label for="keterangan">Keterangan</label>
-                                    <select name="keterangan" class="w-100">
+                                    <label for="pekerjaan" class="form-label">Pekerjaan</label>
+                                    <input class="form-control" type="text" name="pekerjaan" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="penghasilan" class="form-label">Penghasilan</label>
+                                    <input class="form-control" type="number" name="penghasilan" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="no_hp" class="form-label">Nomor Handphone</label>
+                                    <input class="form-control" type="tel" name="no_hp" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="alamat" class="form-label">Alamat</label>
+                                    <input class="form-control" type="text" name="alamat" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="keterangan" class="form-label">Keterangan</label>
+                                    <select name="keterangan" class="w-100 form-select">
                                         <option value="Masih Hidup">Masih Hidup</option>
                                         <option value="Almarhum">Almarhum</option>
                                     </select>

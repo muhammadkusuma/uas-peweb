@@ -2,55 +2,46 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Dokumen</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/Footer-Dark-Multi-Column-icons.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <form action="" method="post" enctype="multipart/form-data">
-        <label for="asal_sekolah">Asal Sekolah</label>
-        <input type="text" name="asal_sekolah" id="asal_sekolah">
-        <br>
-        <label for="agama">Nilai Pendidikan Agama dan Budi Pekerti</label>
-        <input type="number" name="agama" id="agama">
-        <br>
-        <label for="pkn">Nilai Pendidikan Pancasila dan Kewarganegaraan</label>
-        <input type="number" name="pkn" id="pkn">
-        <br>
-        <label for="bahasa">Nilai Bahasa Indonesia</label>
-        <input type="number" name="bahasa" id="bahasa">
-        <br>
-        <label for="mtk">Nilai Matematika</label>
-        <input type="number" name="mtk" id="mtk">
-        <br>
-        <label for="ipa">Nilai Ilmu Pengetahuan Alam</label>
-        <input type="number" name="ipa" id="ipa">
-        <br>
-        <label for="ips">Nilai Ilmu Pengetahuan Sosial</label>
-        <input type="number" name="ips" id="ips">
-        <br>
-        <label for="inggris">Nilai Bahasa Inggris</label>
-        <input type="number" name="inggris" id="inggris">
-        <br>
-        <label for="seni">Nilai Seni Budaya</label>
-        <input type="number" name="seni" id="seni">
-        <br>
-        <label for="pjok">Nilai Pendidikan Jasmani, Olahraga, dan Kesehatan</label>
-        <input type="number" name="pjok" id="pjok">
-        <br>
-        <label for="armel">Nilai Arab Melayu</label>
-        <input type="number" name="armel" id="armel">
-        <br>
-        <label for="skl">Surat Keterangan Lulus</label>
-        <input type="file" name="skl" id="skl">
-        <br>
-        <button type="submit" name="submit">Lanjut</button>
-
-
-
-    </form>
+    <section class="position-relative py-4 py-xl-5">
+        <h2 class="mb-3">Calon Peserta Didik Baru</h2>
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-6 col-xl-4">
+                    <div class="card mb-5">
+                        <div class="card-body d-flex flex-column align-items-center sans-serif">
+                            <h2 class="mb-5">Data Sekolah Dan Nilai</h2>
+                            <form action="text-center" method="post" enctype="multipart/form-data">
+                                <div class="mb-3"><input class="form-control mb-3" type="text" name="asal_sekolah" placeholder="Asal Sekolah" id="asal-sekolah"></div>
+                                <div class="mb-3"><input class="form-control mb-3" type="number" name="agama" placeholder="Nilai Pendidikan Agama dan Budi Pekerti" id="agama"></div>
+                                <div class="mb-3"><input class="form-control" type="number" name="pkn" placeholder="Nilai Pendidikan Pancasila dan Kewarganegaraan" id="pkn"></div>
+                                <div class="mb-3"><input class="form-control" type="number" name="bahasa" placeholder="Nilai Bahasa Indonesia" id="bahasa"></div>
+                                <div class="mb-3"><input class="form-control" type="number" name="mtk" placeholder="Nilai Matematika" id="mtk"></div>
+                                <div class="mb-3"><input class="form-control" type="number" name="ipa" placeholder="Nilai Ilmu Pengetahuan Alam" id="ipa"></div>
+                                <div class="mb-3"><input class="form-control" type="number" name="ips" placeholder="Nilai Ilmu Pengetahuan Sosial" id="ips"></div>
+                                <div class="mb-3"><input class="form-control" type="number" name="inggris" placeholder="Nilai Bahasa Inggris" id="inggris"></div>
+                                <div class="mb-3"><input class="form-control" type="number" name="seni" placeholder="Nilai Seni Budaya" id="seni"></div>
+                                <div class="mb-3"><input class="form-control" type="number" name="pjok" placeholder="Nilai Pendidikan Jasmani, Olahraga, dan Kesehatan" id="pjok"></div>
+                                <div class="mb-3"><input class="form-control" type="number" name="armel" placeholder="Nilai Arab Melayu" id="armel"></div>
+                                <div class="mb-3"><input class="form-control" type="file" name="skl" placeholder="Surat Keterangan Lulus"></div>
+                                <div class="mb-3">
+                                <div class="mb-3"><button class="btn btn-primary d-block w-100" type="submit" name="lanjut">Selanjutnya</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>
