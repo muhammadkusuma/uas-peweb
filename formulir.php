@@ -1,16 +1,23 @@
 <?php
 
 require 'backend/function.php';
+// if (!isset($_SESSION['username'])) { // Jika tidak ada session username berarti dia belum login
+//         header("location: index.php"); // Kita Redirect ke halaman index.php karena belum login
+// }
 
+$unik=$_GET["kode_unik"];
+// $kode_unik = $_GET["kode_unik"];
+// $email = $_get['email'];
 
 if (isset($_POST['formulir'])) {
         if (formulir($_POST) > 0) {
                 echo "
             <script>
                 alert('data berhasil ditambahkan!');
-                document.location.href = 'index.php';
+                document.location.href = 'ayah.php?kode_unik=$unik';
             </script>
         ";
+                // var_dump($_POST);
         } else {
                 echo "
             <script>
@@ -18,6 +25,7 @@ if (isset($_POST['formulir'])) {
                 document.location.href = 'formulir.php';
             </script>
         ";
+                // var_dump($_POST);
         }
 }
 ?>
@@ -43,6 +51,8 @@ if (isset($_POST['formulir'])) {
                                                         <h2 class="mb-5">Formulir Pendaftaran</h2>
                                                         <form class="" method="post" enctype="multipart/form-data">
                                                                 <div class="mb-3">
+                                                                        
+                                                                        <input type="hidden" name="unik" value="<?= $unik; ?>">
                                                                         <label for="nama" class="form-label">Nama Lengkap</label>
                                                                         <input class="form-control mb-3" type="text" name="nama" required>
                                                                 </div>
@@ -55,12 +65,12 @@ if (isset($_POST['formulir'])) {
                                                                         <input class="form-control" type="text" name="tempat_lahir" required>
                                                                 </div>
                                                                 <div class="text-start mb-3">
-                                                                        <label class="form-label text-start">TanggalLahir</label>
+                                                                        <label class="form-label text-start">Tanggal Lahir</label>
                                                                         <input class="form-control" type="date" name="tanggal_lahir" required>
                                                                 </div>
                                                                 <div class="text-start mb-3">
+                                                                        <label class="form-label text-start">Jenis Kelamin</label>
                                                                         <select class="form-select" aria-label="Default select example" name="jenis_kelamin">
-                                                                                <option selected>Jenis Kelamin</option>
                                                                                 <option value="Laki-laki">Laki-laki</option>
                                                                                 <option value="Perempuan">Perempuan</option>
 

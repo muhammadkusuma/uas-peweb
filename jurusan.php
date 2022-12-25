@@ -1,6 +1,6 @@
 <?php
 require_once 'backend/function.php';
-
+$unik = $_GET["kode_unik"];
 if (isset($_POST['jurusan'])) {
     // try {
     //     $conn = getConnection();
@@ -14,13 +14,13 @@ if (isset($_POST['jurusan'])) {
     // }
     if (jurusan($_POST) > 0) {
         echo "<script>
-                            alert('User baru berhasil ditambahkan!');
-                   document.location.href='formulir.php';
+                            alert('data berhasil ditambahkan!');
+                   document.location.href='dashboard/user.php?kode_unik=$unik';
                         </script>";
     } else {
         echo "<script>
-                            alert('User baru GAGAL ditambahkan!');
-                   document.location.href='signup.php';
+                            alert('data gagal ditambahkan!');
+                   document.location.href='jurusan.php';
                         </script>";
     }
 }
@@ -47,12 +47,13 @@ if (isset($_POST['jurusan'])) {
                         <div class="card-body d-flex flex-column align-items-center">
                             <h2 class="mb-5">Jurusan yang Dituju</h2>
                             <form class="text-center" method="post">
+                                <input type="hidden" name="unik" value="<?= $unik; ?>">
                                 <div class="mb-3">
                                     <select name="pilihan1" class="w-100 form-select" aria-label="Default select example">
                                         <option value="">Jurusan Pilihan 1</option>
-                                        <option value="Teknik Kompuer dan Jaringan">Teknik Komputer dan Jaringan
+                                        <option value="Teknik Komputer dan Jaringan">Teknik Komputer dan Jaringan
                                         </option>
-                                        <option value="Akautansi">Akutansi</option>
+                                        <option value="Akutansi">Akutansi</option>
                                         <option value="Teknik Sepeda Motor">Teknik Sepeda Motor</option>
                                         <option value="Teknik Kendaraan Ringan">Teknik Kendaraan Ringan</option>
                                         <option value="Tataboga">Tataboga</option>
@@ -64,9 +65,9 @@ if (isset($_POST['jurusan'])) {
                                 <div class="mb-3">
                                     <select name="pilihan2" class="w-100 form-select" aria-label="Default select example">
                                         <option value="">Jurusan Pilihan 2</option>
-                                        <option value="Teknik Kompuer dan Jaringan">Teknik Komputer dan Jaringan
+                                        <option value="Teknik Komputer dan Jaringan">Teknik Komputer dan Jaringan
                                         </option>
-                                        <option value="Akautansi">Akutansi</option>
+                                        <option value="Akutansi">Akutansi</option>
                                         <option value="Teknik Sepeda Motor">Teknik Sepeda Motor</option>
                                         <option value="Teknik Kendaraan Ringan">Teknik Kendaraan Ringan</option>
                                         <option value="Tataboga">Tataboga</option>

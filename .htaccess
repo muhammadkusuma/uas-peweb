@@ -1,0 +1,4 @@
+Options +FollowSymlinks
+RewriteEngine on
+RewriteRule ^(.*)\.html$ $1.php [nc] // merubah dari extensi .php ke .html
+

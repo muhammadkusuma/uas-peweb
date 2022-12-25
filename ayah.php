@@ -1,7 +1,7 @@
 <?php
 require 'backend/function.php';
 
-
+$unik=$_GET["kode_unik"];
 if (isset($_POST['ayah'])) {
 
 
@@ -30,14 +30,14 @@ if (isset($_POST['ayah'])) {
             echo "
         <script>
             alert('data berhasil ditambahkan!');
-            document.location.href = 'index.php';
+            document.location.href = 'ibu.php?kode_unik=$unik';
         </script>
     ";
         } else {
             echo "
         <script>
             alert('data gagal ditambahkan!');
-            document.location.href = 'formulir.php';
+            document.location.href = 'ayah.php';
         </script>
     ";
         }
@@ -67,6 +67,7 @@ if (isset($_POST['ayah'])) {
                         <div class="card-body d-flex flex-column align-items-center">
                             <h2 class="mb-5">Data Ayah</h2>
                             <form class="" method="post">
+                            <input type="hidden" name="unik" value="<?= $unik; ?>">
                                 <div class="mb-3">
                                     <label for="nama" class="form-label">Nama Lengkap</label>
                                     <input class="form-control mb-3" type="text" name="nama" required>

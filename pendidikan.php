@@ -1,6 +1,6 @@
 <?php
 require_once 'backend/function.php';
-
+$unik = $_GET["kode_unik"];
 if (isset($_POST['submit'])) {
     // try {
     //     $conn = getConnection();
@@ -26,9 +26,19 @@ if (isset($_POST['submit'])) {
     // }
     // var_dump($_POST);
     if (pendidikan($_POST) > 0) {
-        echo "berhasil";
+        echo "
+    <script>
+        alert('data berhasil ditambahkan!');
+        document.location.href = 'jurusan.php?kode_unik=$unik';
+    </script>
+";
     } else {
-        echo "gagal";
+        echo "
+    <script>
+        alert('data gagal ditambahkan!');
+        document.location.href = 'pendidikan.php?kode_unik=$unik';
+    </script>
+";
     }
 }
 ?>
@@ -49,6 +59,7 @@ if (isset($_POST['submit'])) {
     <div class="container-md">
         <div class="card">
             <form class="p-3" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="unik" value="<?= $unik; ?>">
                 <h2 class="mb-5">Riwayat Pendidikan</h2>
                 <div class="row">
                     <div class="col">
@@ -123,13 +134,19 @@ if (isset($_POST['submit'])) {
                 <div class="row">
                     <div class="col">
                         <div class="form-floating mb-3">
+                            <input type="number" class="form-control" id="floatingInput" placeholder="0" required name="seni">
+                            <label for="floatingInput">Nilai Seni Budaya</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-floating mb-3">
                             <input type="file" class="form-control" id="asal_sekolah" placeholder="SMP Negeri " required name="skl">
                             <label for="exampleFormControlInput1" class="form-label">Surat Keterangan Lulus</label>
                         </div>
                     </div>
 
                 </div>
-                <button type="submit" name="submit" class="btn btn-primary w-100 mb-2">Selanjutnya</button>
+                <button type="submit" name="submit" class="btn btn-primary w-100 mb-2" name="pendidikan">Selanjutnya</button>
                 <a href="#" class="btn btn-outline-primary w-100">Kembali</a>
 
             </form>

@@ -1,6 +1,11 @@
 <?php
 require 'getConnection.php';
 $conn = getConnection();
+function unik(){
+    $kode_unik= rand(1000,9999);
+    return $kode_unik;
+}
+$unik= unik();
 
 function query($query)
 {
@@ -33,6 +38,7 @@ function buat_akun($data)
 function formulir($data)
 {
     global $conn;
+    global $unik;
 
     $foto_pendaftar = upload();
     if (!$foto_pendaftar) {
@@ -53,12 +59,13 @@ function formulir($data)
     $no_hp = $data["nohp"];
     $jumlah_saudara = $data["jumlah_saudara"];
     $foto = upload();
+    $unik = $data['unik'];
 
     $sql = "INSERT INTO data_siswa 
     ( nama, nisn,  tempat_lahir, tanggal_lahir, jenis_kelamin, provinsi, 
-    kabupaten, kecamatan, kode_pos, alamat, agama, no_hp, jmlh_saudara, upload_foto, status)
+    kabupaten, kecamatan, kode_pos, alamat, agama, no_hp, jmlh_saudara, upload_foto, status, kode_unik)
     VALUES ('$nama_lengkap','$nisn','$tempat_lahir','$tanggal_lahir','$jenis_kelamin','$provinsi',
-    '$kabupaten','$kecamatan','$kodepos','$alamat','$agama','$no_hp',$jumlah_saudara,'$foto','Diproses')";
+    '$kabupaten','$kecamatan','$kodepos','$alamat','$agama','$no_hp','$jumlah_saudara','$foto','Diproses', '$unik')";
 
     $conn->exec($sql);
 
@@ -126,10 +133,11 @@ function ayah($data)
     $no_hp = $data["no_hp"];
     $alamat = $data["alamat"];
     $keterangan = $data["keterangan"];
+    $unik = $data['unik'];
 
 
-    $sql = "INSERT INTO ayah (nama,nik, tempat_lahir,tanggal_lahir,agama, pend_terakhir, pekerjaan, penghasilan, alamat, no_hp, keterangan)
-    VALUES ('$nama','$nik','$tempat_lahir','$tanggal_lahir','$agama','$pendidikan','$pekerjaan','$penghasilan','$alamat','$no_hp','$keterangan')";
+    $sql = "INSERT INTO ayah (nama,nik, tempat_lahir,tanggal_lahir,agama, pend_terakhir, pekerjaan, penghasilan, alamat, no_hp, keterangan, kode_unik)
+    VALUES ('$nama','$nik','$tempat_lahir','$tanggal_lahir','$agama','$pendidikan','$pekerjaan','$penghasilan','$alamat','$no_hp','$keterangan', '$unik')";
 
     $conn->exec($sql);
 
@@ -151,10 +159,11 @@ function ibu($data)
     $no_hp = $data["no_hp"];
     $alamat = $data["alamat"];
     $keterangan = $data["keterangan"];
+    $unik = $data['unik'];
 
 
-    $sql = "INSERT INTO ibu (nama,nik, tempat_lahir,tanggal_lahir,agama, pend_terakhir, pekerjaan, penghasilan, alamat, no_hp, keterangan)
-    VALUES ('$nama','$nik','$tempat_lahir','$tanggal_lahir','$agama','$pendidikan','$pekerjaan','$penghasilan','$alamat','$no_hp','$keterangan')";
+    $sql = "INSERT INTO ibu (nama,nik, tempat_lahir,tanggal_lahir,agama, pend_terakhir, pekerjaan, penghasilan, alamat, no_hp, keterangan, kode_unik)
+    VALUES ('$nama','$nik','$tempat_lahir','$tanggal_lahir','$agama','$pendidikan','$pekerjaan','$penghasilan','$alamat','$no_hp','$keterangan', '$unik')";
 
     $conn->exec($sql);
 
@@ -166,9 +175,10 @@ function jurusan($data)
     global $conn;
     $pilihan1 = $data["pilihan1"];
     $pilihan2 = $data["pilihan2"];
+    $unik = $data['unik'];
 
-    $sql = "INSERT INTO jurusan_dituju (jurusan_1,jurusan_2)
-    VALUES ('$pilihan1','$pilihan2')";
+    $sql = "INSERT INTO jurusan_dituju (jurusan_1,jurusan_2, kode_unik)
+    VALUES ('$pilihan1','$pilihan2', '$unik')";
 
     $conn->exec($sql);
 
@@ -191,10 +201,11 @@ function pendidikan($data)
     $pjok = $data["pjok"];
     $armel = $data["armel"];
     $skl = skl();
+    $unik = $data['unik'];
 
     $sql = "INSERT INTO riwayat_pendidikan 
-    (id_pendaftar, asal_sekolah, agama, pkn, bahasa, mtk, ipa, ips, inggris, seni, pjok, armel, skl)
-    VALUES (NULL,'$asal','$agama','$pkn','$bahasa','$mtk','$ipa','$ips','$inggris','$seni','$pjok','$armel','$skl')";
+    (asal_sekolah, agama, pkn, bahasa, mtk, ipa, ips, inggris, seni, pjok, armel, skl, kode_unik)
+    VALUES ('$asal','$agama','$pkn','$bahasa','$mtk','$ipa','$ips','$inggris','$seni','$pjok','$armel','$skl', '$unik')";
 
     $conn->exec($sql);
 
