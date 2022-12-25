@@ -6,25 +6,25 @@ require '../backend/function.php';
 // if (!isset($_SESSION['username'])) { // Jika tidak ada session username berarti dia belum login
 //     header("location: ../login_php/index.php"); // Kita Redirect ke halaman index.php karena belum login
 // }
-if (isset($_POST['set'])) {
-    // var_dump(ubah($_POST));
+// if (isset($_POST['set'])) {
+//     // var_dump(ubah($_POST));
 
-    if (set($_POST) == 0) {
-        echo "
-            <script>
-               alert('data berhasil diubah');
-               document.location.href='../dashboard/pengguna.php';
-            </script>
-        ";
-    } else {
-        echo "
-            <script>
-               alert('data gagal diubah');
-               document.location.href='../dashboard/pengguna.php';
-            </script>
-        ";
-    }
-}
+//     if (set($_POST) == 0) {
+//         echo "
+//             <script>
+//                alert('data berhasil diubah');
+//                document.location.href='../dashboard/pengguna.php';
+//             </script>
+//         ";
+//     } else {
+//         echo "
+//             <script>
+//                alert('data gagal diubah');
+//                document.location.href='../dashboard/pengguna.php';
+//             </script>
+//         ";
+//     }
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,34 +77,7 @@ if (isset($_POST['set'])) {
                     </div>
                 </nav>
                 <div class="container-fluid">
-                    <?php
 
-                    $sql = $conn->prepare("SELECT * from riwayat_pendidikan");
-                    $sql->execute();
-                    ?>
-                    <?php while ($d = $sql->fetch(PDO::FETCH_ASSOC)) {
-
-                        $i;
-                        $agama = ((int)$d['agama']);
-                        $pkn = ((int)$d['pkn']);
-                        $mtk = ((int)$d['mtk']);
-                        $ipa = ((int)$d['ipa']);
-                        $ips = ((int)$d['ips']);
-                        $inggris = ((int)$d['inggris']);
-                        $seni = ((int)$d['seni']);
-                        $pjok = ((int)$d['pjok']);
-                        $armel = ((int)$d['armel']);
-
-                        $i++;
-                        $rata = $agama + $pkn + $mtk + $ipa + $ips + $inggris + $seni + $pjok + $armel / 9;
-                        // var_dump($rata);
-                        // if ($rata > 80 && $rata <82) {
-                        //     echo "lulus";
-                        // } else {
-                        //     echo "gagal";
-                        // }
-                    }
-                    ?>
 
                     <?php
                     $data = $conn->prepare("SELECT * FROM riwayat_pendidikan, jurusan_dituju where riwayat_pendidikan.kode_unik=jurusan_dituju.kode_unik");
@@ -121,31 +94,45 @@ if (isset($_POST['set'])) {
                         $seni = ((int)$d['seni']);
                         $pjok = ((int)$d['pjok']);
                         $armel = ((int)$d['armel']);
-                        
-                       
-                        $rata = $agama + $pkn + $mtk + $ipa + $ips + $inggris + $seni + $pjok + $armel / 9;
 
-                        if($rata>=10&$rata<=10){
-                            $data = $conn->prepare("UPDATE riwayat_pendidikan, jurusan_dituju set jurusan_1='TKJ' where riwayat_pendidikan.kode_unik=jurusan_dituju.kode_unik");
-                            $data->execute();
-                        }
+
+                        $nilai = $agama + $pkn + $mtk + $ipa + $ips + $inggris + $seni + $pjok + $armel / 9;
+                        $rata = $nilai;
+                        // if ($rata > 50 & $rata < 100) {
+                        //     $data = $conn->prepare("UPDATE jurusan_dituju,riwayat_pendidikan set jurusan_dituju.jurusan_1='sdfsdf', jurusan_dituju.jurusan_2='' where riwayat_pendidikan.kode_unik=jurusan_dituju.kode_unik");
+                        //     $data->execute();
+                        // }
+                        // if ($nilai >= 50) {
+                        //     $jurusan_1 = "TKJ";
+                        //     $data = $conn->prepare("UPDATE jurusan_dituju,riwayat_pendidikan set riwayat_pendidikan.jurusan_1=$jurusan_1, riwayat_pendidikan.jurusan_2='' where riwayat_pendidikan.kode_unik=jurusan_dituju.kode_unik");
+                        //     $data->execute();
+                        // } else {
+                        //     $jurusan_1 = "sfsdfs1";
+                        // }
+
                         ?>
                         <tr>
-                            <td><?= $rata?></td>
+                            <td><?= $nilai ?></td>
+                            <td><?= $rata ?></td>
                             <td><?= $d['jurusan_1']; ?></td>
                             <td><?= $d['jurusan_2']; ?></td>
                             <br>
                         </tr>
-                       
-                        
+
+
                     <?php endwhile; ?>
 
-
+                    <?php
+                    // if ($rata > 5 & $rata < 100) {
+                    //     $data = $conn->prepare("UPDATE jurusan_dituju,riwayat_pendidikan set riwayat_pendidikan.jurusan_1='sdfsd11sdsasff', riwayat_pendidikan.jurusan_2='' where riwayat_pendidikan.kode_unik=jurusan_dituju.kode_unik");
+                    //     $data->execute();
+                    // }
+                    ?>
 
 
 
                     <form action="" method="post">
-                        <input type="hidden" name="rata" value="<?= $rata ?>">
+                        <!-- <input type="hidden" name="rata" value=""> -->
                         <div class="row">
                             <div class="row">
                                 <div class="col">

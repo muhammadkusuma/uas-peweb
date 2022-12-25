@@ -316,11 +316,11 @@ function hapus($id)
     return $stmt->rowCount();
 }
 
-function set($data){
+function set($data)
+{
     global $conn;
-
     $rata = $data["rata"];
-    $tkj = $data["tkj"];
+    $tkj = (int)$data["tkj"];
     $akutansi = $data["akutansi"];
     $tsm = $data["tsm"];
     $tkr = $data["tkr"];
@@ -328,7 +328,57 @@ function set($data){
     $rpl = $data["rpl"];
     $atp = $data["atp"];
 
-    $query = "SELECT * from riwayat_pendidikan, jurusan_dituju where riwayat_pendidikam.kode_unik=jurusan_dituju.kode_unik";
-    $conn->exec($query);
-   
+
+    $data1 = $conn->prepare("SELECT * FROM riwayat_pendidikan, jurusan_dituju where riwayat_pendidikan.kode_unik=jurusan_dituju.kode_unik");
+    $data1->execute();
+
+    while ($d = $data1->fetch(PDO::FETCH_ASSOC)) {
+
+        $agama = ((int)$d['agama']);
+        $pkn = ((int)$d['pkn']);
+        $mtk = ((int)$d['mtk']);
+        $ipa = ((int)$d['ipa']);
+        $ips = ((int)$d['ips']);
+        $inggris = ((int)$d['inggris']);
+        $seni = ((int)$d['seni']);
+        $pjok = ((int)$d['pjok']);
+        $armel = ((int)$d['armel']);
+
+
+        $nilai = $agama + $pkn + $mtk + $ipa + $ips + $inggris + $seni + $pjok + $armel / 9;
+        // tkj
+        if ($nilai >= 50) {
+            $jurusan_1 = "TKJ";
+        } else {
+            $jurusan_1 = "sfsdfs1";
+        }
+        $data = $conn->prepare("UPDATE jurusan_dituju,riwayat_pendidikan set riwayat_pendidikan.jurusan_1=$jurusan_1, riwayat_pendidikan.jurusan_2='' where riwayat_pendidikan.kode_unik=jurusan_dituju.kode_unik");
+        $data->execute();
+    }
+
+
+
+    // $query = "SELECT * from riwayat_pendidikan, jurusan_dituju where riwayat_pendidikam.kode_unik=jurusan_dituju.kode_unik";
+    // $conn->exec($query);
+
+    // $data = $conn->prepare("SELECT * FROM riwayat_pendidikan, jurusan_dituju where riwayat_pendidikan.kode_unik=jurusan_dituju.kode_unik");
+    // $data->execute();
+
+    // while ($d = $data->fetch(PDO::FETCH_ASSOC)) {
+
+    //     $agama = ((int)$d['agama']);
+    //     $pkn = ((int)$d['pkn']);
+    //     $mtk = ((int)$d['mtk']);
+    //     $ipa = ((int)$d['ipa']);
+    //     $ips = ((int)$d['ips']);
+    //     $inggris = ((int)$d['inggris']);
+    //     $seni = ((int)$d['seni']);
+    //     $pjok = ((int)$d['pjok']);
+    //     $armel = ((int)$d['armel']);
+
+
+    //     $rata = $agama + $pkn + $mtk + $ipa + $ips + $inggris + $seni + $pjok + $armel / 9;
+
+    // }
+    // return $rata;
 }
