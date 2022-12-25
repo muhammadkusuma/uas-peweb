@@ -3,9 +3,13 @@ require '../backend/function.php';
 // session_start(); // Start session nya
 // // Kita cek apakah user sudah login atau belum
 // // Cek nya dengan cara cek apakah terdapat session username atau tidak
-// if (!isset($_SESSION['username'])) { // Jika tidak ada session username berarti dia belum login
-//     header("location: index.php"); // Kita Redirect ke halaman index.php karena belum login
-// }
+if($_SESSION['level']==='kepsek'){
+    if (!isset($_SESSION['username'])) { // Jika tidak ada session username berarti dia belum login
+        header("location: ../login_php/index.php"); // Kita Redirect ke halaman index.php karena belum login
+    }
+}else{
+    header("location: ../login_php/index.php");
+}
 $jmlh_pendaftar = query("SELECT count(*) from data_siswa");
 $jmlh_tolak = query("SELECT count(*) from data_siswa where status='Ditolak'");
 $jmlh_terima = query("SELECT count(*) from data_siswa where status='Diterima'");

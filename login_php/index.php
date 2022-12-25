@@ -2,9 +2,18 @@
 session_start(); // Start session nya
 // Kita cek apakah user sudah login atau belum
 // Cek nya dengan cara cek apakah terdapat session username atau tidak
+if ($_SESSION['level'] === 'admin') {
+    header('location: ../dashboard/admin.php'); // Kita Redirect ke halaman welcome.php
+
+}else 
 if (isset($_SESSION['username'])) { // Jika session username ada berarti dia sudah login
-    header('location: ../formulir.php'); // Kita Redirect ke halaman welcome.php
+    $email = $_SESSION['email'];
+    $cekunik = "SELECT kode_unik from data_siswa where email='$email'";
+    // $unikayah="SELECT kode_unik from data_ayah where kode_unik='$cekunik'";
+    header('location: ../dashboard/user.php?kode_unik=$cekunik'); // Kita Redirect ke halaman welcome.php
+
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -71,9 +80,9 @@ if (isset($_SESSION['username'])) { // Jika session username ada berarti dia sud
                                             <i class="fab fa-facebook-f"></i>&nbsp; Login with Facebook</a> -->
                                         <hr>
                                     </form>
-                                    <div class="text-center"><a class="small" href="forgot-password.html">Forgot
-                                            Password?</a></div>
-                                    <div class="text-center"><a class="small" href="register.html">Create an
+                                    <!-- <div class="text-center"><a class="small" href="forgot-password.html">Forgot
+                                            Password?</a></div> -->
+                                    <div class="text-center"><a class="small" href="register.php">Create an
                                             Account!</a></div>
                                 </div>
                             </div>

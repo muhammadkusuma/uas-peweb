@@ -11,20 +11,25 @@ $sql->bindParam(':a', $username);
 $sql->bindParam(':b', $password);
 $sql->execute(); // Eksekusi querynya
 $data = $sql->fetch(); // Ambil datanya dari hasil query tadi
-
+$uniklogin = query("SELECT kode_unik from user where username='$username'");
+// var_dump($uniklogin);
+$unikhasil = implode($uniklogin[0]);
 // Cek apakah variabel $data ada datanya atau tidak
-if( ! empty($data)){ // Jika tidak sama dengan empty (kosong)
+if (!empty($data)) { // Jika tidak sama dengan empty (kosong)
   $_SESSION['username'] = $data['username']; // Set session untuk username (simpan username di session)
   $_SESSION['nama'] = $data['nama']; // Set session untuk nama (simpan nama di session)
   $_SESSION['email'] = $data['email']; // Set session untuk email (simpan email di session)
-  setcookie("message","delete",time()-1); // Kita delete cookie message
+  setcookie("message", "delete", time() - 1); // Kita delete cookie message
+  // $userlogin = $_SESSION['username'];
+  // $uniklogin= query("SELECT kode_unik from user where username='$userlogin");
+  // var_dump($unikhasil);
   echo '<script>
-  alert("Selamat datang '.$data['nama'].'");
+  alert("Selamat datang ' . $data['nama'] . '");
   document.location.href = "../formulir.php";
   </script>';
-  // header("location: ../formulir.php"); // Kita redirect ke halaman welcome.php
-}else{ // Jika $data nya kosong
+  header("location: ../formulir.php?kode_unik=$unikhasil"); // Kita redirect ke halaman welcome.php
+} else { // Jika $data nya kosong
   // Buat sebuah cookie untuk menampung data pesan kesalahan
-  setcookie("message", "Maaf, Username atau Password salah", time()+3600);
+  setcookie("message", "Maaf, Username atau Password salah", time() + 3600);
   header("location: index.php"); // Redirect kembali ke halaman index.php
 }

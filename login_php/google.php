@@ -20,7 +20,7 @@ if ($gclient->getAccessToken()) {
     $email = $gpuserprofile['email']; // Ambil email Akun Google nya
     // Buat query untuk mengecek apakah data user dengan email tersebut sudah ada atau belum
     // Jika ada, ambil id, username, dan nama dari user tersebut
-    $sql = $pdo->prepare("SELECT id, username, nama, email, kode_unik FROM user WHERE email=:a");
+    $sql = $pdo->prepare("SELECT id, username, nama, email, kode_unik, level FROM user WHERE email=:a");
     $sql->bindParam(':a', $email);
     $sql->execute(); // Eksekusi querynya
     // $user = $sql->fetch(); // Ambil datanya dari hasil query tadi
@@ -31,14 +31,43 @@ if ($gclient->getAccessToken()) {
     $emailgoogle = $email;
     // var_dump($unikdb);
     // var_dump($emaildb);
+    $level = implode(array_slice($user, 5, 1));
+
+    $usernamedb= implode(array_slice($user, 1, 1));
+
     if ($emaildb == $email) {
         $_SESSION['id'] = $id;
-        $_SESSION['username'] = $username;
+        $_SESSION['username'] = $usernamedb;
         $_SESSION['nama'] = $nama;
         $_SESSION['email'] = $email;
+        $_SESSION['level'] = $level;
+        // $unik
 
-        header("location: ../formulir.php?kode_unik=$unikdb");
-        
+        if ($_SESSION['level']  === 'user') {
+            $_SESSION['username'] = $usernamedb;
+            $_SESSION['nama'] = $nama;
+            $_SESSION['email'] = $email;
+            $_SESSION['level'] = $level;
+            // var_dump($unikuser);
+            $unikuser =strval($unikdb);
+            // var_dump($unikuser);
+            header("location: ../dashboard/user.php?kode_unik=$unikuser"); // Kita Redirect ke halaman welcome.php
+            // var_dump($_SESSION['username']);
+            // var_dump($_SESSION['level']);
+        } else if ($level === 'kepsek') {
+            $_SESSION['username'] = $usernamedb;
+            $_SESSION['nama'] = $nama;
+            $_SESSION['email'] = $email;
+            $_SESSION['level'] = $level;
+            header('location: ../dashboard/kepsek.php');
+        } else {
+            $_SESSION['username'] = $usernamedb;
+            $_SESSION['nama'] = $nama;
+            $_SESSION['email'] = $email;
+            $_SESSION['level'] = $level;
+            header("location: ../dashboard/admin.php");
+            // var_dump($_SESSION['level']);
+        }
     } else {
         if (empty($user)) { // Jika User dengan email tersebut belum ada
             // Ambil username dari kata sebelum simbol @ pada email

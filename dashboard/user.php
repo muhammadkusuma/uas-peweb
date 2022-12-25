@@ -1,11 +1,20 @@
 <?php
-require '../backend/function.php';
+// require '../backend/function.php';
+// require '../login_php/google.php';
 session_start(); // Start session nya
 // Kita cek apakah user sudah login atau belum
-// Cek nya dengan cara cek apakah terdapat session username atau tidak
+// // Cek nya dengan cara cek apakah terdapat session username atau tidak
 if (!isset($_SESSION['username'])) { // Jika tidak ada session username berarti dia belum login
     header("location: ../login_php/index.php"); // Kita Redirect ke halaman index.php karena belum login
 }
+// if($_SESSION['level']==='user'){
+   
+// }else{
+//     header("location: ../login_php/index.php");
+// }
+
+require '../backend/function.php';
+
 $unik = $_GET["kode_unik"];
 $sql = "SELECT status from data_siswa where kode_unik=$unik";
 $siswa = query($sql);
@@ -33,9 +42,9 @@ $siswa = query($sql);
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
                     <li class="nav-item"><a class="nav-link active" href="user.php"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="diri.php?kode_unik=<?=$unik?>"><i class="fas fa-user"></i><span>Data Pribadi</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="ortu.php?kode_unik=<?=$unik?>"><i class="fas fa-user"></i><span>Data Orang Tua</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="nilai.php?kode_unik=<?=$unik?>"><i class="fas fa-user"></i><span>Data Nilai</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="diri.php?kode_unik=<?= $unik ?>"><i class="fas fa-user"></i><span>Data Pribadi</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="ortu.php?kode_unik=<?= $unik ?>"><i class="fas fa-user"></i><span>Data Orang Tua</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="nilai.php?kode_unik=<?= $unik ?>"><i class="fas fa-user"></i><span>Data Nilai</span></a></li>
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
             </div>

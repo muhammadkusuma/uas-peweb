@@ -1,11 +1,12 @@
 <?php
 require 'getConnection.php';
 $conn = getConnection();
-function unik(){
-    $kode_unik= rand(1000,9999);
+function unik()
+{
+    $kode_unik = rand(1000, 9999);
     return $kode_unik;
 }
-$unik= unik();
+$unik = unik();
 
 function query($query)
 {
@@ -255,4 +256,79 @@ function skl()
     move_uploaded_file($tmpName, 'skl/' . $namaFileBaru);
 
     return $namaFileBaru;
+}
+
+function registrasi($data)
+{
+    global $conn;
+    global $unik;
+
+    $username = strtolower(stripslashes($data["username"]));
+    // $password = mysqli_real_escape_string($conn, $data["password"]);
+    // $password2 = mysqli_real_escape_string($conn, $data["password2"]);
+    $password = $data["password"];
+    $nama = $data["nama"];
+
+    $password1 = md5($password);
+
+    $sql = "INSERT INTO user (username,nama, password, level, kode_unik) 
+    VALUES ('$username','$nama','$password1','user', '$unik')";
+    $conn->exec($sql);
+
+    var_dump($sql);
+    return $conn->lastInsertId();
+}
+
+function cari($keyword)
+{
+    $query = "SELECT * FROM user WHERE nama LIKE '%$keyword%' OR email LIKE '%$keyword%' OR level LIKE '%$keyword%'";
+
+    return query($query);
+}
+
+function ubah($data)
+{
+    global $conn;
+    $id = $data["id"];
+    $nama = $data["nama"];
+    $email = $data["email"];
+    $level = $data['level'];
+
+    $query = "UPDATE user SET level='$level' WHERE id=$id";
+    $conn->exec($query);
+    // mysqli_query($conn, $query);
+
+    return $conn->lastInsertId();
+}
+
+function hapus($id)
+{
+    // global $conn;
+    // mysqli_query($conn,"DELETE FROM mahasiswa WHERE id=$id");
+
+    // return mysqli_affected_rows($conn);
+    global $conn;
+    $sql = "DELETE FROM user WHERE id=:id";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(":id", $id);
+    $stmt->execute();
+
+    return $stmt->rowCount();
+}
+
+function set($data){
+    global $conn;
+
+    $rata = $data["rata"];
+    $tkj = $data["tkj"];
+    $akutansi = $data["akutansi"];
+    $tsm = $data["tsm"];
+    $tkr = $data["tkr"];
+    $tataboga = $data["tataboga"];
+    $rpl = $data["rpl"];
+    $atp = $data["atp"];
+
+    $query = "SELECT * from riwayat_pendidikan, jurusan_dituju where riwayat_pendidikam.kode_unik=jurusan_dituju.kode_unik";
+    $conn->exec($query);
+   
 }

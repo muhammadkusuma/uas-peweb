@@ -22,7 +22,7 @@ if (isset($_POST['formulir'])) {
                 echo "
             <script>
                 alert('data gagal ditambahkan!');
-                document.location.href = 'formulir.php';
+                document.location.href = 'formulir.php?kode_unik=$unik';
             </script>
         ";
                 // var_dump($_POST);

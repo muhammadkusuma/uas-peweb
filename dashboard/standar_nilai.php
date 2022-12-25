@@ -1,12 +1,30 @@
 <?php
 require '../backend/function.php';
-session_start(); // Start session nya
+// session_start(); // Start session nya
 // Kita cek apakah user sudah login atau belum
 // Cek nya dengan cara cek apakah terdapat session username atau tidak
 // if (!isset($_SESSION['username'])) { // Jika tidak ada session username berarti dia belum login
 //     header("location: ../login_php/index.php"); // Kita Redirect ke halaman index.php karena belum login
 // }
+if (isset($_POST['set'])) {
+    // var_dump(ubah($_POST));
 
+    if (set($_POST) == 0) {
+        echo "
+            <script>
+               alert('data berhasil diubah');
+               document.location.href='../dashboard/pengguna.php';
+            </script>
+        ";
+    } else {
+        echo "
+            <script>
+               alert('data gagal diubah');
+               document.location.href='../dashboard/pengguna.php';
+            </script>
+        ";
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -79,27 +97,64 @@ session_start(); // Start session nya
 
                         $i++;
                         $rata = $agama + $pkn + $mtk + $ipa + $ips + $inggris + $seni + $pjok + $armel / 9;
-                        var_dump($rata);
-                        if ($rata > 90) {
-                            echo "lulus";
-                        } else {
-                            echo "gagal";
-                        }
+                        // var_dump($rata);
+                        // if ($rata > 80 && $rata <82) {
+                        //     echo "lulus";
+                        // } else {
+                        //     echo "gagal";
+                        // }
                     }
                     ?>
+
+                    <?php
+                    $data = $conn->prepare("SELECT * FROM riwayat_pendidikan, jurusan_dituju where riwayat_pendidikan.kode_unik=jurusan_dituju.kode_unik");
+                    $data->execute();
+                    ?>
+                    <?php while ($d = $data->fetch(PDO::FETCH_ASSOC)) : ?>
+                        <?php
+                        $agama = ((int)$d['agama']);
+                        $pkn = ((int)$d['pkn']);
+                        $mtk = ((int)$d['mtk']);
+                        $ipa = ((int)$d['ipa']);
+                        $ips = ((int)$d['ips']);
+                        $inggris = ((int)$d['inggris']);
+                        $seni = ((int)$d['seni']);
+                        $pjok = ((int)$d['pjok']);
+                        $armel = ((int)$d['armel']);
+                        
+                       
+                        $rata = $agama + $pkn + $mtk + $ipa + $ips + $inggris + $seni + $pjok + $armel / 9;
+
+                        if($rata>=10&$rata<=10){
+                            $data = $conn->prepare("UPDATE riwayat_pendidikan, jurusan_dituju set jurusan_1='TKJ' where riwayat_pendidikan.kode_unik=jurusan_dituju.kode_unik");
+                            $data->execute();
+                        }
+                        ?>
+                        <tr>
+                            <td><?= $rata?></td>
+                            <td><?= $d['jurusan_1']; ?></td>
+                            <td><?= $d['jurusan_2']; ?></td>
+                            <br>
+                        </tr>
+                       
+                        
+                    <?php endwhile; ?>
+
+
 
 
 
                     <form action="" method="post">
+                        <input type="hidden" name="rata" value="<?= $rata ?>">
                         <div class="row">
                             <div class="row">
                                 <div class="col">
                                     <label for="">Tenik Komputer dan Jaringan</label>
-                                    <input type="number" class="form-control" value="<?= $nilai['asal_sekolah'] ?>">
+                                    <input type="number" class="form-control" name="tkj">
                                 </div>
                                 <div class="col">
                                     <label for="">Akutansi</label>
-                                    <input type="number" class="form-control" value="<?= $nilai['agama'] ?>">
+                                    <input type="number" class="form-control" name="akutansi">
                                 </div>
                             </div>
                         </div>
@@ -108,11 +163,11 @@ session_start(); // Start session nya
                             <div class="row">
                                 <div class="col">
                                     <label for="">Teknik Sepeda Motor </label>
-                                    <input type="number" class="form-control" value="<?= $nilai['pkn'] ?>">
+                                    <input type="number" class="form-control" name="tsm">
                                 </div>
                                 <div class="col">
                                     <label for="">Teknik Kendaraan Ringan</label>
-                                    <input type="number" class="form-control" value="<?= $nilai['bahasa'] ?>">
+                                    <input type="number" class="form-control" name="tkr">
                                 </div>
                             </div>
                         </div>
@@ -120,12 +175,12 @@ session_start(); // Start session nya
                             <div class="row">
                                 <div class="col">
                                     <label for="">Tataboga</label>
-                                    <input type="number" class="form-control" value="<?= $nilai['mtk'] ?>">
+                                    <input type="number" class="form-control" name="tataboga">
                                 </div>
                                 <div class="col">
                                     <label for="">Rekayasa Perangkat Lunak</label>
 
-                                    <input type="number" class="form-control" value="<?= $nilai['ipa'] ?>">
+                                    <input type="number" class="form-control" name="rpl">
                                 </div>
                             </div>
                         </div>
@@ -134,10 +189,10 @@ session_start(); // Start session nya
                                 <div class="col">
                                     <label for="">Agribisnis Tanaman Perkebunan</label>
 
-                                    <input type="number" class="form-control" value="<?= $nilai['ips'] ?>">
+                                    <input type="number" class="form-control" name="atp">
                                 </div>
                                 <div class="col mt-4">
-                                    <button class="btn btn-primary d-block w-100" type="submit" name="proses">Proses</button>
+                                    <button class="btn btn-primary d-block w-100" type="submit" name="set">Proses</button>
                                 </div>
                             </div>
                         </div>
