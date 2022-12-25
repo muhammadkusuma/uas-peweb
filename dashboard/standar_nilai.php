@@ -29,7 +29,7 @@ session_start(); // Start session nya
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item"><a class="nav-link " href="index.php"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                    <li class="nav-item"><a class="nav-link " href="admin.php"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="admin_daftar.php"><i class="fas fa-user"></i><span>Data
                                 Pendaftar</span></a></li>
                     <li class="nav-item"><a class="nav-link active" href="standar_nilai.php"><i class="fas fa-table"></i><span>Standar
@@ -59,10 +59,90 @@ session_start(); // Start session nya
                     </div>
                 </nav>
                 <div class="container-fluid">
-                    <div class="d-sm-flex justify-content-between align-items-center mb-4">
-                        <h3 class="text-dark mb-0">Halo <?php echo $_SESSION['nama']; ?></h3>
-                    </div>
+                    <?php
 
+                    $sql = $conn->prepare("SELECT * from riwayat_pendidikan");
+                    $sql->execute();
+                    ?>
+                    <?php while ($d = $sql->fetch(PDO::FETCH_ASSOC)) {
+
+                        $i;
+                        $agama = ((int)$d['agama']);
+                        $pkn = ((int)$d['pkn']);
+                        $mtk = ((int)$d['mtk']);
+                        $ipa = ((int)$d['ipa']);
+                        $ips = ((int)$d['ips']);
+                        $inggris = ((int)$d['inggris']);
+                        $seni = ((int)$d['seni']);
+                        $pjok = ((int)$d['pjok']);
+                        $armel = ((int)$d['armel']);
+
+                        $i++;
+                        $rata = $agama + $pkn + $mtk + $ipa + $ips + $inggris + $seni + $pjok + $armel / 9;
+                        var_dump($rata);
+                        if ($rata > 90) {
+                            echo "lulus";
+                        } else {
+                            echo "gagal";
+                        }
+                    }
+                    ?>
+
+
+
+                    <form action="" method="post">
+                        <div class="row">
+                            <div class="row">
+                                <div class="col">
+                                    <label for="">Tenik Komputer dan Jaringan</label>
+                                    <input type="number" class="form-control" value="<?= $nilai['asal_sekolah'] ?>">
+                                </div>
+                                <div class="col">
+                                    <label for="">Akutansi</label>
+                                    <input type="number" class="form-control" value="<?= $nilai['agama'] ?>">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="row">
+                                <div class="col">
+                                    <label for="">Teknik Sepeda Motor </label>
+                                    <input type="number" class="form-control" value="<?= $nilai['pkn'] ?>">
+                                </div>
+                                <div class="col">
+                                    <label for="">Teknik Kendaraan Ringan</label>
+                                    <input type="number" class="form-control" value="<?= $nilai['bahasa'] ?>">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="row">
+                                <div class="col">
+                                    <label for="">Tataboga</label>
+                                    <input type="number" class="form-control" value="<?= $nilai['mtk'] ?>">
+                                </div>
+                                <div class="col">
+                                    <label for="">Rekayasa Perangkat Lunak</label>
+
+                                    <input type="number" class="form-control" value="<?= $nilai['ipa'] ?>">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="row">
+                                <div class="col">
+                                    <label for="">Agribisnis Tanaman Perkebunan</label>
+
+                                    <input type="number" class="form-control" value="<?= $nilai['ips'] ?>">
+                                </div>
+                                <div class="col mt-4">
+                                    <button class="btn btn-primary d-block w-100" type="submit" name="proses">Proses</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
                 </div>
             </div>
             <footer class="bg-white sticky-footer">

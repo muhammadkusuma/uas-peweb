@@ -29,7 +29,7 @@ require '../backend/function.php';
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item"><a class="nav-link " href="index.php"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                    <li class="nav-item"><a class="nav-link " href="admin.php"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
                     <li class="nav-item"><a class="nav-link active" href="admin_daftar.php"><i class="fas fa-user"></i><span>Data
                                 Pendaftar</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="standar_nilai.php"><i class="fas fa-table"></i><span>Standar
