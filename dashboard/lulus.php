@@ -1,11 +1,15 @@
 <?php
 require '../backend/function.php';
-if ($_SESSION['level'] === 'kepsek') {
-    if (!isset($_SESSION['username'])) { // Jika tidak ada session username berarti dia belum login
-        header("location: ../login_php/index.php"); // Kita Redirect ke halaman index.php karena belum login
-    }
-} else {
-    header("location: ../login_php/index.php");
+// if ($_SESSION['level'] === 'kepsek') {
+//     if (!isset($_SESSION['username'])) { // Jika tidak ada session username berarti dia belum login
+//         header("location: ../login_php/index.php"); // Kita Redirect ke halaman index.php karena belum login
+//     }
+// } else {
+//     header("location: ../login_php/index.php");
+// }
+
+if (!isset($_SESSION['username'])) { // Jika tidak ada session username berarti dia belum login
+    header("location: ../login_php/index.php"); // Kita Redirect ke halaman index.php karena belum login
 }
 $jmlh_pendaftar = query("SELECT count(*) from data_siswa");
 $jmlh_tolak = query("SELECT count(*) from data_siswa where status='Ditolak'");

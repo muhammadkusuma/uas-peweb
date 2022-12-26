@@ -1,5 +1,5 @@
 <?php
-// require '../backend/function.php';
+require '../backend/function.php';
 // require '../login_php/google.php';
 session_start(); // Start session nya
 // Kita cek apakah user sudah login atau belum

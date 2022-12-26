@@ -69,7 +69,7 @@ require '../backend/function.php';
                             <li class="nav-item dropdown no-arrow">
                                 <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="d-none d-lg-inline me-2 text-gray-600 small"><?php echo $_SESSION['nama']; ?></span><img class="border rounded-circle img-profile" src="assets/img/avatars/avatar1.jpeg"></a>
                                     <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
-                                        <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
+                                        <a class="dropdown-item" href="../login_php/logout.php"><i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
                                     </div>
                                 </div>
                             </li>
@@ -119,9 +119,9 @@ require '../backend/function.php';
                                         <td><?= $d['jurusan_1']; ?></td>
                                         <td><?= $d['jurusan_2']; ?></td>
                                         <td>
-                                            <a href="pilihan1?kode_unik=<?= $d["kode_unik"] ?>&jurusan_1=<?= $d["jurusan_1"]; ?>">Pilihan 1</a>
-                                            <a href="terima.php?kode_unik=<?= $d["kode_unik"] ?>&jurusan_1=<?= $d["jurusan_2"]; ?>">Pilihan 2</a>
-                                            <a href="tolak.php?kode_unik=<?= $d["kode_unik"]?>" onclick="return confirm('yakin');">Tolak</a>
+                                            <a href="pilihan1.php?kode_unik=<?= $d['kode_unik']; ?>">Pilihan 1</a>
+                                            <a href="terima.php?kode_unik=<?= $d['kode_unik']; ?>&jurusan_1=<?= $d['jurusan_2']; ?>">Pilihan 2</a>
+                                            <a href="tolak.php?kode_unik=<?= $d['kode_unik']?>" onclick="return confirm('yakin');">Tolak</a>
                                         </td>
                                     </tr>
                                     <?php $i++; ?>
