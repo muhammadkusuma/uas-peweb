@@ -79,110 +79,54 @@ require '../backend/function.php';
                 <div class="container-fluid">
 
 
-                    <?php
-                    $data = $conn->prepare("SELECT * FROM riwayat_pendidikan, jurusan_dituju where riwayat_pendidikan.kode_unik=jurusan_dituju.kode_unik");
-                    $data->execute();
-                    ?>
-                    <?php while ($d = $data->fetch(PDO::FETCH_ASSOC)) : ?>
-                        <?php
-                        $agama = ((int)$d['agama']);
-                        $pkn = ((int)$d['pkn']);
-                        $mtk = ((int)$d['mtk']);
-                        $ipa = ((int)$d['ipa']);
-                        $ips = ((int)$d['ips']);
-                        $inggris = ((int)$d['inggris']);
-                        $seni = ((int)$d['seni']);
-                        $pjok = ((int)$d['pjok']);
-                        $armel = ((int)$d['armel']);
-
-
-                        $nilai = $agama + $pkn + $mtk + $ipa + $ips + $inggris + $seni + $pjok + $armel / 9;
-                        $rata = $nilai;
-                        // if ($rata > 50 & $rata < 100) {
-                        //     $data = $conn->prepare("UPDATE jurusan_dituju,riwayat_pendidikan set jurusan_dituju.jurusan_1='sdfsdf', jurusan_dituju.jurusan_2='' where riwayat_pendidikan.kode_unik=jurusan_dituju.kode_unik");
-                        //     $data->execute();
-                        // }
-                        // if ($nilai >= 50) {
-                        //     $jurusan_1 = "TKJ";
-                        //     $data = $conn->prepare("UPDATE jurusan_dituju,riwayat_pendidikan set riwayat_pendidikan.jurusan_1=$jurusan_1, riwayat_pendidikan.jurusan_2='' where riwayat_pendidikan.kode_unik=jurusan_dituju.kode_unik");
-                        //     $data->execute();
-                        // } else {
-                        //     $jurusan_1 = "sfsdfs1";
-                        // }
-
-                        ?>
-                        <tr>
-                            <td><?= $nilai ?></td>
-                            <td><?= $rata ?></td>
-                            <td><?= $d['jurusan_1']; ?></td>
-                            <td><?= $d['jurusan_2']; ?></td>
-                            <br>
-                        </tr>
-
-
-                    <?php endwhile; ?>
-
-                    <?php
-                    // if ($rata > 5 & $rata < 100) {
-                    //     $data = $conn->prepare("UPDATE jurusan_dituju,riwayat_pendidikan set riwayat_pendidikan.jurusan_1='sdfsd11sdsasff', riwayat_pendidikan.jurusan_2='' where riwayat_pendidikan.kode_unik=jurusan_dituju.kode_unik");
-                    //     $data->execute();
-                    // }
-                    ?>
-
-
-
                     <form action="" method="post">
-                        <!-- <input type="hidden" name="rata" value=""> -->
-                        <div class="row">
-                            <div class="row">
-                                <div class="col">
-                                    <label for="">Tenik Komputer dan Jaringan</label>
-                                    <input type="number" class="form-control" name="tkj">
-                                </div>
-                                <div class="col">
-                                    <label for="">Akutansi</label>
-                                    <input type="number" class="form-control" name="akutansi">
-                                </div>
-                            </div>
-                        </div>
+                        <table>
+                            <table cellspacing="0" cellpadding="10">
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Nama</th>
+                                    <th>NISN</th>
+                                    <th>Rata-rata</th>
+                                    <th>PILIHAN 1</th>
+                                    <th>PILIHAN 2</th>
+                                    <th>Aksi</th>
+                                </tr>
+                                <?php $i = 1;
+                                $data = $conn->prepare("SELECT * FROM data_siswa, jurusan_dituju, riwayat_pendidikan where data_siswa.kode_unik=jurusan_dituju.kode_unik && data_siswa.kode_unik=riwayat_pendidikan.kode_unik");
+                                $data->execute();
+                                // var_dump($data);
+                                ?>
+                                <?php while ($d = $data->fetch(PDO::FETCH_ASSOC)) : ?>
+                                    <tr>
+                                        <?php
+                                        $agama = ((int)$d['agama']);
+                                        $pkn = ((int)$d['pkn']);
+                                        $mtk = ((int)$d['mtk']);
+                                        $ipa = ((int)$d['ipa']);
+                                        $ips = ((int)$d['ips']);
+                                        $inggris = ((int)$d['inggris']);
+                                        $seni = ((int)$d['seni']);
+                                        $pjok = ((int)$d['pjok']);
+                                        $armel = ((int)$d['armel']);
 
-                        <div class="row">
-                            <div class="row">
-                                <div class="col">
-                                    <label for="">Teknik Sepeda Motor </label>
-                                    <input type="number" class="form-control" name="tsm">
-                                </div>
-                                <div class="col">
-                                    <label for="">Teknik Kendaraan Ringan</label>
-                                    <input type="number" class="form-control" name="tkr">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="row">
-                                <div class="col">
-                                    <label for="">Tataboga</label>
-                                    <input type="number" class="form-control" name="tataboga">
-                                </div>
-                                <div class="col">
-                                    <label for="">Rekayasa Perangkat Lunak</label>
 
-                                    <input type="number" class="form-control" name="rpl">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="row">
-                                <div class="col">
-                                    <label for="">Agribisnis Tanaman Perkebunan</label>
-
-                                    <input type="number" class="form-control" name="atp">
-                                </div>
-                                <div class="col mt-4">
-                                    <button class="btn btn-primary d-block w-100" type="submit" name="set">Proses</button>
-                                </div>
-                            </div>
-                        </div>
+                                        $nilai = $agama + $pkn + $mtk + $ipa + $ips + $inggris + $seni + $pjok + $armel / 9;
+                                        ?>
+                                        <td><?= $i; ?></td>
+                                        <td><?= $d['nama']; ?></td>
+                                        <td><?= $d['nisn']; ?></td>
+                                        <td><?= $nilai ?></td>
+                                        <td><?= $d['jurusan_1']; ?></td>
+                                        <td><?= $d['jurusan_2']; ?></td>
+                                        <td>
+                                            <a href="pilihan1?kode_unik=<?= $d["kode_unik"] ?>&jurusan_1=<?= $d["jurusan_1"]; ?>">Pilihan 1</a>
+                                            <a href="terima.php?kode_unik=<?= $d["kode_unik"] ?>&jurusan_1=<?= $d["jurusan_2"]; ?>">Pilihan 2</a>
+                                            <a href="tolak.php?kode_unik=<?= $d["kode_unik"]?>" onclick="return confirm('yakin');">Tolak</a>
+                                        </td>
+                                    </tr>
+                                    <?php $i++; ?>
+                                <?php endwhile; ?>
+                            </table>
 
                     </form>
                 </div>
